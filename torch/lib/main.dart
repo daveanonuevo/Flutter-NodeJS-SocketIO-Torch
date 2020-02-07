@@ -46,13 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
     //update your domain before using
     //socketIO = new SocketIO("http://127.0.0.1:3000", "/",
 
-    socketIO = SocketIOManager().createSocketIO("http://10.0.2.2:3000", "/");
+    socketIO = SocketIOManager().createSocketIO("http://178.128.111.12", "/");
 
     //call init socket before doing anything
     socketIO.init();
 
     //subscribe event
-    socketIO.subscribe("toggle", _onSocketInfo);
+    socketIO.subscribe("toggle", _onToggle);
 
     //connect socket
     socketIO.connect();
@@ -65,23 +65,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 
-  _socketStatus(dynamic data) {
-    print("Socket status: " + data);
-  }
-
-  _onSocketInfo(dynamic data) {
-    print("Socket info: " + data);
-  }
-
-  _subscriptions() {
-    if (socketIO != null) {
-      socketIO.subscribe("toggle", _onToggle);
-    }
-  }
-
   void _onToggle(dynamic message) {
     print("Message from SocketIO: " + message);
-    _isFlashOn = true;
+    print("value of _isFlashOn:" + _isFlashOn.toString());
+    if (_isFlashOn == true){
+      Torch.turnOff();
+      setState(() {
+        _isFlashOn = false;
+      });
+    }
+    else{
+      Torch.turnOn();
+      setState(() {
+        _isFlashOn = true;
+      });
+    }
   }
 
   void _disconnect(){

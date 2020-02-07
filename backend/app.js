@@ -15,6 +15,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use( (req, res, next) =>{
     res.header("Access-Control-Allow-Origin", "*"); // Tells browser to accept input from all domains
     next();
