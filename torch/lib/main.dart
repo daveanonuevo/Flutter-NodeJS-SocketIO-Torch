@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_socket_io/socket_io_manager.dart';
 import 'package:torch/torch.dart';
-import  'package:flutter_socket_io/flutter_socket_io.dart';
+import 'package:flutter_socket_io/flutter_socket_io.dart';
 
 
 void main() => runApp(MyApp());
